@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <div class="brand">Tetris</div>
+            <div class="score-wrap">
+                <span>Score:</span>
+                <span id="score">0</span>
+            </div>
+        </header>
+        <main class="layout">
+            <section class="playfield-wrap">
+                <canvas id="playfield" width="300" height="600" aria-label="Tetris playfield"></canvas>
+                <div id="overlay" class="overlay hidden" role="dialog" aria-live="assertive">
+                    <div class="overlay-content">
+                        <div class="game-over">Game Over</div>
+                        <div class="final-score">Score: <span id="finalScore">0</span></div>
+                        <button id="btnRestart" class="btn">Restart</button>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="sidebar">
+                <div class="panel stats-panel">
+                    <div class="panel-title">Stats</div>
+                    <div class="stat"><span>High Score:</span> <strong id="highScore">0</strong></div>
+                    <div class="stat"><span>Speed:</span> <strong id="speed">1.0x</strong></div>
+                </div>
+                <div class="panel next-panel">
+                    <div class="panel-title">Next</div>
+                    <canvas id="next" width="120" height="120" aria-label="Next piece preview"></canvas>
+                </div>
+                <div class="panel controls-panel">
+                    <div class="panel-title">Controls</div>
+                    <ul class="controls-list">
+                        <li><kbd>←</kbd>/<kbd>→</kbd> Move</li>
+                        <li><kbd>↑</kbd> Rotate</li>
+                        <li><kbd>↓</kbd> Soft drop</li>
+                        <li><kbd>Space</kbd> Hard drop</li>
+                        <li><kbd>P</kbd> Pause/Resume</li>
+                        <li><kbd>R</kbd> Restart</li>
+                    </ul>
+                    <div class="buttons">
+                        <button id="btnStart" class="btn">Start</button>
+                        <button id="btnPause" class="btn">Pause</button>
+                        <button id="btnReset" class="btn btn-secondary">Reset</button>
+                        <button id="btnMute" class="btn btn-secondary">Mute: Off</button>
+                    </div>
+                </div>
+            </aside>
+        </main>
+        <footer class="footer">Built with HTML, CSS, and JavaScript</footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Wire basic buttons after script load
+        (function(){
+            const startBtn = document.getElementById('btnStart');
+            const pauseBtn = document.getElementById('btnPause');
+            const resetBtn = document.getElementById('btnReset');
+            const muteBtn = document.getElementById('btnMute');
+            const restartBtn = document.getElementById('btnRestart');
+
+            startBtn.addEventListener('click', () => window.TETRIS && window.TETRIS.start());
+            pauseBtn.addEventListener('click', () => window.TETRIS && window.TETRIS.togglePause());
+            resetBtn.addEventListener('click', () => window.TETRIS && window.TETRIS.reset());
+            muteBtn.addEventListener('click', () => window.TETRIS && window.TETRIS.toggleMute());
+            restartBtn.addEventListener('click', () => window.TETRIS && window.TETRIS.reset());
+        })();
+    </script>
+  </body>
+</html>
+
+

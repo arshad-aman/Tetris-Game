@@ -1,0 +1,151 @@
+:root {
+  --bg: #0f1221;
+  --bg-2: #151936;
+  --fg: #e8ecf1;
+  --muted: #a9b3c7;
+  --accent: #4cc9f0;
+  --accent-2: #f72585;
+  --panel: #1b2048;
+  --grid: #242a66;
+  --btn-bg: #2a316f;
+  --btn-bg-2: #3a4291;
+  --shadow: rgba(0,0,0,0.35);
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--fg);
+  background: radial-gradient(1200px 600px at 20% -20%, #1f245b, transparent),
+              radial-gradient(1000px 600px at 100% 0%, #212863, transparent),
+              var(--bg);
+}
+
+.app { min-height: 100%; display: flex; flex-direction: column; }
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), transparent);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.brand { font-weight: 700; letter-spacing: 0.5px; }
+.score-wrap { font-weight: 600; display: flex; gap: 8px; align-items: baseline; }
+.score-wrap span:first-child { color: var(--muted); font-weight: 500; }
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+  padding: 16px;
+  flex: 1 1 auto;
+}
+
+.playfield-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#playfield {
+  width: 360px; /* scaled display */
+  height: 720px;
+  background:
+    linear-gradient(transparent 29px, rgba(255,255,255,0.06) 30px),
+    linear-gradient(90deg, transparent 29px, rgba(255,255,255,0.06) 30px);
+  background-size: 30px 30px, 30px 30px; /* faint 30px grid */
+  background-color: var(--panel);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px var(--shadow), inset 0 0 0 2px rgba(255,255,255,0.06);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+}
+.overlay.hidden { display: none; }
+.overlay-content {
+  background: var(--bg-2);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 20px 24px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px var(--shadow);
+  text-align: center;
+}
+.game-over { font-size: 24px; font-weight: 700; margin-bottom: 8px; color: var(--accent-2); }
+.final-score { color: var(--muted); margin-bottom: 12px; }
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.panel {
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), transparent);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 10px 20px var(--shadow);
+}
+.panel-title { font-weight: 700; margin-bottom: 10px; letter-spacing: 0.3px; }
+.stat { color: var(--muted); margin-bottom: 6px; display: flex; justify-content: space-between; }
+
+#next {
+  width: 160px;
+  height: 160px;
+  background: var(--panel);
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.06);
+}
+
+.controls-list { margin: 0 0 12px 0; padding-left: 18px; color: var(--muted); }
+.controls-list kbd {
+  background: #11142c;
+  padding: 2px 6px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--fg);
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.2);
+}
+
+.buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn {
+  background: linear-gradient(180deg, var(--btn-bg-2), var(--btn-bg));
+  color: white;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.btn:hover { filter: brightness(1.1); }
+.btn:active { transform: translateY(1px); }
+.btn-secondary { background: linear-gradient(180deg, #454c93, #3a3f7b); }
+
+.footer {
+  padding: 10px 16px;
+  color: var(--muted);
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { order: -1; }
+  #playfield { width: 300px; height: 600px; }
+  #next { width: 120px; height: 120px; }
+}
+
+
